@@ -1,0 +1,43 @@
+{
+  "entities": {
+    "Transaction": {
+      "title": "Transaction",
+      "description": "A single income or expense record",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["income", "expense"]
+        },
+        "amount": {
+          "type": "number",
+          "description": "The amount of money"
+        },
+        "category": {
+          "type": "string",
+          "description": "Category of income/expense"
+        },
+        "date": {
+          "type": "string",
+          "format": "date",
+          "description": "Date in YYYY-MM-DD"
+        },
+        "description": {
+          "type": "string",
+          "description": "Brief description of the transaction"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["type", "amount", "category", "date", "description", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}/transactions/{transactionId}": {
+      "schema": "Transaction",
+      "description": "User's personal income and expense transactions"
+    }
+  }
+}
